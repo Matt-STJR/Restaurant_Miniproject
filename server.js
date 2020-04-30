@@ -72,10 +72,16 @@ app.post("/reserve", function(req, res) {
 
   if (tables.length <= 5) {
     tables.push(newGuest);
-    alert("Table successfully booked!");
+    res.send({
+      message: "Table successfully booked!",
+      status: 200
+    });
   } else if (tables.length > 5) {
     waitinglist.push(newGuest);
-    alert("All tables preoccupied. Added guest to waiting list.");
+    res.send({
+      message: "All tables occupied. Guest added to waiting list.",
+      status: 200
+    });
   }
 
 });
