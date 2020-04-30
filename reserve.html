@@ -70,13 +70,13 @@
         phonenumber: $("#phone-number").val().trim(),
         email: $("#email").val().trim(),
         uniqueid: $("#uniqueid").val().trim()
-      };s
+      };
 
-    
-      $.post("/api/guest", newGuest)
-        .then(function(data) {
+      console.log(newGuest);
+      $.post("/reserve", newGuest, function(data) {
           console.log("reserved.html", data);
           alert("Adding guest...");
+         
          });
     });
   </script>
