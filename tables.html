@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hot Restaurant</title>
 </head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <body>
     <div class="container text-center">
         <div class="jumbotron">
-          <h1 class="text-center">Hot Restaurant</h1>
-          <h3 class="text-center">We only have 5 tables! Book your seat before they all are gone!</h3>
-          <hr>
-          <a href="/reserve.html"><button class="btn btn-lg btn-primary"><span class="fa fa-plus"></span>Make Reservation</button></a>
-          <a href="/index.html"><button class="btn btn-danger btn-lg"><span
-                class="fa fa-eye"></span> Home</button></a>
+            <h1 class="text-center">Hot Restaurant</h1>
+            <h3 class="text-center">We only have 5 tables! Book your seat before they all are gone!</h3>
+            <hr>
+            <a href="/reserve.html"><button class="btn btn-lg btn-primary"><span class="fa fa-plus"></span>Make
+                    Reservation</button></a>
+            <a href="/index.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>
+                    Home</button></a>
         </div>
     </div>
     <div class="container text-center">
-    <div class="row">
-        <!-- ::before  -->
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Current Reservation</h4>
+        <div class="row">
+            <!-- ::before  -->
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Current Reservation</h4>
+                    </div>
                 </div>
-            </div>
                 <div class="panel-body" id="tableSection">
-                <!-- ::before   -->
-                <div class="well" id="tableWell-01">
-                    <h2>
-                        <span class="label label-primary">1</span>
-                    </h2>
-                </div>  
-                <!-- ::after -->
+                    <!-- ::before   -->
+                    <div class="well" id="tableWell-01">
+                        <h2>
+                            <span class="label label-primary">1</span>
+                        </h2>
+                    </div>
+                    <!-- ::after -->
                 </div>
             </div>
         </div>
- 
-<!-- Waiting list panel -->
+
+        <!-- Waiting list panel -->
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">Waiting list</h4>
@@ -51,6 +54,21 @@
     </div>
     <!-- ::after -->
     </div>
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $.get("/api/tables", function (data) {
+                console.log(data);
+                if (data) {
+
+                    for (i = 0; i < data.length; i++) {
+                        var newreserve = $("<p>").text(data.id)
+                        $("#waitlistSection").append(newreserve)
+                    }
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
