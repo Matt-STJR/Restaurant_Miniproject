@@ -72,10 +72,11 @@
         forcePoints: $("#uniqueid").val().trim()
       };s
 
-    /  $.post("/api/customer", newCustomer)
-    /    .then(function(data) {
-          console.log("add.html", data);
-          alert("Adding character...");
+    
+      $.post("/api/customer", newCustomer)
+        .then(function(data) {
+          console.log("reserved.html", data);
+          alert("Adding customer...");
          });
     });
   </script>
