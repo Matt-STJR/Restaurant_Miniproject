@@ -16,9 +16,9 @@
             <h1 class="text-center">Hot Restaurant</h1>
             <h3 class="text-center">We only have 5 tables! Book your seat before they all are gone!</h3>
             <hr>
-            <a href="/reserve.html"><button class="btn btn-lg btn-primary"><span class="fa fa-plus"></span>Make
+            <a href="/reserve"><button class="btn btn-lg btn-primary"><span class="fa fa-plus"></span>Make
                     Reservation</button></a>
-            <a href="/index.html"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>
+            <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span>
                     Home</button></a>
         </div>
     </div>
@@ -61,8 +61,21 @@
                 console.log(data);
                 if (data) {
 
-                    for (i = 0; i < data.length; i++) {
-                        var newreserve = $("<p>").text(data.id)
+                    for ( var i = 0; i < data.length; i++) {
+                        var newreserve = $("<p>").text(data[i].name)
+                        $("#tableSection").append(newreserve)
+                    }
+                }
+            });
+
+
+
+            $.get("/api/waitinglist", function (data) {
+                console.log(data);
+                if (data) {
+
+                    for ( var i = 0; i < data.length; i++) {
+                        var newreserve = $("<p>").text(data[i].name)
                         $("#waitlistSection").append(newreserve)
                     }
                 }
