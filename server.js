@@ -64,6 +64,22 @@ app.get("/api/waitinglist", function(req, res) {
   return res.json(waitinglist);
 });
 
+// Assign guest to table or waiting list (based on object from reserve.html)
+app.post("/reserve", function(req, res) {
+  var newGuest = req.body;
+
+  console.log(newGuest);
+
+  if (tables.length <= 5) {
+    tables.push(newGuest);
+    alert("Table successfully booked!");
+  } else if (tables.length > 5) {
+    waitinglist.push(newGuest);
+    alert("All tables preoccupied. Added guest to waiting list.");
+  }
+
+});
+
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {
